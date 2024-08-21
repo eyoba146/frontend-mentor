@@ -16,28 +16,29 @@ const chekBoxIsRequired = document.getElementById("checkbox-is-required")
 const submitBtn =document.getElementById("submit")
 const borderColor = "1px solid hsl(0, 66%, 54%)"
 const normalBorder = "1px solid hsl(186, 15%, 59%)"
+const successAlert = document.getElementById("success-message")
 var errors = [0,0,0,0,0,0]
 function checkFirstName() {
     if(firstName.value == "") {
         firstName.style.border = borderColor
-        fNameIsRequired.style.display = "block"
+        fNameIsRequired.innerHTML = "This field is required"
         errors[0] = 1
     }else {
         errors[0] = 0;
         firstName.style.border = normalBorder
-        fNameIsRequired.style.display = "none"
+        fNameIsRequired.innerHTML = "&nbsp;"
     }
 }
 
 function checkLastName() {
     if(lastName.value == "") {
         lastName.style.border = borderColor
-        lNameIsRequired.style.display = "block"
+        lNameIsRequired.innerHTML = "This field is required"
         errors[1] = 1
     }else {
         errors[1] = 0
         lastName.style.border = normalBorder
-        lNameIsRequired.style.display = "none"
+        lNameIsRequired.innerHTML = "&nbsp;"
     }
 }
 
@@ -51,48 +52,52 @@ function checkEmail() {
     }
     if(email.value == "") {
         email.style.border = borderColor
-        emailIsRequired.style.display = "block"
+        emailIsRequired.innerHTML = "Please enter a valid email adress"
         errors[2] = 1
     }else if(!isValid) {
         errors[2] = 1
         email.style.border = borderColor
-        emailIsRequired.style.display = "block"
+        emailIsRequired.innerHTML = "Please enter a valid email adress"
     }else {
         errors[2] = 0
         email.style.border = normalBorder
-        emailIsRequired.style.display = "none"
+        emailIsRequired.innerHTML = "&nbsp;"
     }
 }
 
 function checkEnquiry() {
     if(!(generalEnquiry.checked || supportRequest.checked)) {
-        queryTypeIsRequired.style.display = "block"
+        queryTypeIsRequired.innerHTML = "Please enter a query type"
+        borderGeneral.style.border = borderColor
+        borderSupport.style.border = borderColor
         errors[3] = 1
     }else {
         errors[3] = 0
-        queryTypeIsRequired.style.display = "none"
+        queryTypeIsRequired.innerHTML = "&nbsp"
+        borderGeneral.style.border = normalBorder
+        borderSupport.style.border = normalBorder
     }
 }
 
 function checkMessage() {
     if(myMessage.value == "") {
         myMessage.style.border = borderColor
-        messageIsRequired.style.display = "block"
+        messageIsRequired.innerHTML = "This field is required"
         errors[4] = 1
     }else {
         errors[4] = 0
         myMessage.style.border = normalBorder
-        messageIsRequired.style.display = "none"
+        messageIsRequired.innerHTML = "&nbsp;"
     }
 }
 
 function checkCheckbox() {
     if(!checkBox.checked) {
-        chekBoxIsRequired.style.display = "block"
+        chekBoxIsRequired.innerHTML = "To submit this form, please consent to being contacted"
         errors[5] = 1
     }else {
         errors[5] = 0
-        chekBoxIsRequired.style.display = "none"
+        chekBoxIsRequired.innerHTML = "&nbsp;"
 
     }
 }
@@ -108,7 +113,21 @@ function successMessage() {
         }
     }
     if(noError) {
-        alert("success")
+        document.getElementById("container").style.transform = "scale(1)"
+        successAlert.style.display = "flex"
+ 
+        setTimeout(() => {
+            successAlert.style.display = "none"
+            checkBox.checked = false;
+            myMessage.value = ""
+            generalEnquiry.checked = false
+            supportRequest.checked = false
+            email.value = ""
+            lastName.value = ""
+            firstName.value = ""
+        }, 4000);
+        
+    }else {
     }
 }
 
