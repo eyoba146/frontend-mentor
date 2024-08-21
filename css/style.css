@@ -24,18 +24,30 @@ body {
 }
 #container #form {
     width: 859px;
-    transition: .5s ease;
     height: fit-content;
     padding-top: 20px;
     padding-bottom: 50px;
     border-radius: 14px;
     display: flex;
+    transform: scale(0.7);
     justify-content: center;
     align-items: center;
+    transition: .5s ease;
     background-color: hsl(0, 0%, 100%);
 }
+
+#success-message #message {
+    width: 280px;
+    margin-top: 15px;
+    height: 65px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    background-color: hsl(187, 24%, 22%);
+}
 p {
-    display: none;
+    /* display: none; */
+    font-weight: 700;
     font-size: 16px;
     color: hsl(0, 66%, 54%);
 }
@@ -44,6 +56,7 @@ p {
     flex-direction: column;
     /* text-align: center; */
     width: 90%;
+    padding-top: 100px;
 }
 #ahya #input-container {
     width: 100%;
@@ -63,6 +76,7 @@ p {
     margin-left: 20px;
     margin-right: 20px;
     width: 100%;
+
 }
 #last-radio {
     margin-left: 20px;
@@ -116,3 +130,107 @@ h3 {
     margin-top: 10px;
     height: 40px;
 }
+#container #success-message {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    animation: pop-up .6s ease;
+}
+@keyframes pop-up {
+    from{margin-top: -300px;}
+    to{margin-top: 0;}
+}
+#success-message #message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 10px;
+}
+#success-logo {
+    display: flex;
+    font-size: 12px;
+    width: 100%;
+    padding: 10px;
+    color: white;
+    padding: 0;
+    height: 20px;
+}
+#success-logo img {
+    /* transform: scale(0); */
+    margin-bottom: 5px;
+}
+
+#message #desc {
+    color: hsl(186, 15%, 59%);
+    font-size: 10px;
+}
+@media (max-width:610px) {
+    * {
+        font-size: 11px;
+    }
+  #container #form {
+    width: 90%;
+    height: 800px;
+    overflow: auto;
+    transform: scale(1);
+  }
+  #form #input-container {
+    width: 100%;
+    margin-left: -20px;
+    margin-top: -20px;
+    /* background-color: red; */
+    flex-direction: column;
+  }
+  #ahya h1 {
+    font-size: 24px;
+  }
+  #checkbox {
+    margin-left: -15px;
+  }
+  p {
+    margin-top: 12px;
+    font-size: 10px;
+  }
+  #ahya h3 {
+    margin-bottom: 20px;
+  }
+  #ahya {
+    padding-top: 330px !important;
+    display: flex;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+    flex-direction: column;
+  }
+ 
+  #ahya #checkbox {
+    margin-bottom: 0;
+  }
+.input-container #last {
+    margin-top: 20px;
+    /* display: none; */
+  }
+  #last-radio #checkbox {
+    transform: scale(1.1) !important;
+  }
+  #last-radio h3 {
+    margin-top: 25px;
+  }
+  .input-container #last input{
+    height: 200px !important;
+  }
+  #input-container button {
+    margin-top: 30px !important;
+  }
+  #checkbox-is-required {
+    margin-left: -5px;
+    margin-top: 5px;
+  }
+  .last-radio {
+    margin-top: -40px;
+  }
+} 
