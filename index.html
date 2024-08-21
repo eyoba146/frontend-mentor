@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+    <title>Frontend Mentor | Contact form</title>
+    </head>
+    
+  <body>
+    <div id="container">
+      <div id="form">
+        <div id="ahya">
+          <div id="input-container">
+            <div id="last">
+                <h1>Contact us</h1>
+            </div>
+          </div>
+          <div id="input-container">
+            <div id="last">
+            <label for="Firstname">First Name *</label><br/>
+            <input type="text" name="Firstname" id="f-name">
+            <p id="name-is-required">This field is required</p>
+            </div>
+            <div id="last">
+              <label for="Firstname">Last Name *</label><br/>
+              <input type="text" name="Firstname" id="l-name">
+              <p id="lname-is-required">This field is required</p>
+            </div>
+          </div>
+          <div id="input-container">
+            <div id="last">
+              <label for="Email">Email Adress *</label><br/>
+              <input type="email" name="email" id="email">
+            <p id="valid-email-is-required">Please enter a valid email adress</p>
+
+            </div>
+          </div>
+          <div id="input-container">
+            <div id="last-radio">
+              <label for="Email">Query Type *</label><br/>
+              <div id="border">
+              <input type="radio" name="enquiry" id="general-enquiry"><h3>General Enquiry</h3>
+              </div>
+            <p id="query-type-is-required">Please enter a query type</p>
+
+            </div>
+            <div id="last-radio">
+              <label for="enquiry">&nbsp;</label><br/>
+              <div id="border">
+              <input type="radio" name="enquiry" id="support-request"><h3>Support Request</h3>
+            </div>
+            </div>
+          </div>
+          <div id="input-container">
+            <div id="last">
+              <label for="Message">Message *</label><br/>
+              <input style="height:100px;"type="text" name="text" id="my-message">
+              <p id="message-is-required">This field is required</p>
+            </div>
+          </div>
+          
+          <div id="last-radio">
+            <label for="Email">&nbsp;</label><br/>
+            <div id="border" style="border: none;width:fit-content;">
+            <input type="checkbox" style="transform: scale(1.5);" name="checkbox" id="checkbox"><h3>I consent to being contacted by team *</h3>
+          </div>
+          <p id="checkbox-is-required">To submit this form, please consent to being contacted</p>
+
+        </div>
+        <div id="input-container">
+          <div id="last">
+              <button id="submit">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./js/script.js"></script>
+  </body>
+
+</html>
