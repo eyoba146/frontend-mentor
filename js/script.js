@@ -16,6 +16,7 @@ const chekBoxIsRequired = document.getElementById("checkbox-is-required")
 const submitBtn =document.getElementById("submit")
 const borderColor = "1px solid hsl(0, 66%, 54%)"
 const normalBorder = "1px solid hsl(186, 15%, 59%)"
+const form = document.getElementById("form")
 const successAlert = document.getElementById("success-message")
 var errors = [0,0,0,0,0,0]
 function checkFirstName() {
@@ -113,6 +114,7 @@ function successMessage() {
         }
     }
     if(noError) {
+        form.scrollTo(0, 0)
         window.scrollTo(0, 0)
         document.getElementById("container").style.transform = "scale(1)"
         successAlert.style.display = "flex"
