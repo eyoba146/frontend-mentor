@@ -23,6 +23,7 @@ function checkFirstName() {
     if(firstName.value == "") {
         firstName.style.border = borderColor
         fNameIsRequired.innerHTML = "This field is required"
+        firstName.focus()
         errors[0] = 1
     }else {
         errors[0] = 0;
@@ -35,6 +36,7 @@ function checkLastName() {
     if(lastName.value == "") {
         lastName.style.border = borderColor
         lNameIsRequired.innerHTML = "This field is required"
+        lastName.focus()
         errors[1] = 1
     }else {
         errors[1] = 0
@@ -44,22 +46,26 @@ function checkLastName() {
 }
 
 function checkEmail() {
-    let isValid;
+    let isValid = 0;
     for(let i = 0; i < email.value.length; i++) {
         console.log()
         if(email.value[i] == "@") {
-            isValid = true;
+            isValid++;
+        }else if(email.value[i] == ".") {
+            isValid++
         }
     }
     if(email.value == "") {
         email.style.border = borderColor
         emailIsRequired.innerHTML = "Please enter a valid email adress"
+        email.focus()
         errors[2] = 1
-    }else if(!isValid) {
+    }else if(isValid != 2) {
         errors[2] = 1
         email.style.border = borderColor
+        email.focus()
         emailIsRequired.innerHTML = "Please enter a valid email adress"
-    }else {
+    }else if(isValid == 2) {
         errors[2] = 0
         email.style.border = normalBorder
         emailIsRequired.innerHTML = "&nbsp;"
@@ -69,6 +75,7 @@ function checkEmail() {
 function checkEnquiry() {
     if(!(generalEnquiry.checked || supportRequest.checked)) {
         queryTypeIsRequired.innerHTML = "Please enter a query type"
+        generalEnquiry.focus()
         borderGeneral.style.border = borderColor
         borderSupport.style.border = borderColor
         errors[3] = 1
@@ -84,6 +91,7 @@ function checkMessage() {
     if(myMessage.value == "") {
         myMessage.style.border = borderColor
         messageIsRequired.innerHTML = "This field is required"
+        myMessage.focus()
         errors[4] = 1
     }else {
         errors[4] = 0
@@ -95,6 +103,7 @@ function checkMessage() {
 function checkCheckbox() {
     if(!checkBox.checked) {
         chekBoxIsRequired.innerHTML = "To submit this form, please consent to being contacted"
+        checkBox.focus()
         errors[5] = 1
     }else {
         errors[5] = 0
@@ -116,10 +125,9 @@ function successMessage() {
     if(noError) {
         form.scrollTo(0, 0)
         window.scrollTo(0, 0)
-        document.getElementById("container").style.transform = "scale(1)"
         successAlert.style.display = "flex"
         setTimeout(() => {
-            successAlert.style.display = "none"
+            successAlert.style.marginTop = "-300px"
             checkBox.checked = false;
             myMessage.value = ""
             borderSupport.style.background  = "white"
@@ -129,8 +137,13 @@ function successMessage() {
             email.value = ""
             lastName.value = ""
             firstName.value = ""
+            setTimeout(() => {
+                successAlert.style.display = "none"
+            successAlert.style.marginTop = "0px"
+
+            }, 1500);
         }, 4000);
-        
+     
     }else {
     }
 }
