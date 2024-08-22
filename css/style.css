@@ -123,13 +123,15 @@ h3 {
     margin-left: 10px;
     margin-top:20px;
 }
-#input-container #last-radio input {
+#input-container #last-radio input, #input-container #last-radio textarea {
     width: 20px;
-    cursor: pointer;
     margin-bottom: 10px;
     border-radius: 5px;
     margin-top: 10px;
     height: 40px;
+}
+#my-message {
+    border-radius: 7px;
 }
 #container #success-message {
     position: absolute;
@@ -199,6 +201,7 @@ h3 {
     margin-top: 12px;
     font-size: 10px;
   }
+
   #ahya h3 {
     margin-bottom: 20px;
   }
@@ -223,7 +226,13 @@ h3 {
   #last-radio h3 {
     margin-top: 25px;
   }
-  .input-container #last input{
+  #my-message {
+    width: 100%;
+    height: 200px !important;
+    padding: 10px;
+    margin-top: 15px;
+  }
+  .input-container #last input, {
     height: 200px !important;
   }
   #input-container button {
@@ -237,3 +246,9 @@ h3 {
     margin-top: -40px;
   }
 } 
+@media (max-width: 414px) {
+    #container {
+        padding-top: 420px !important;
+        padding-bottom: 300px  !important;
+    }
+}
