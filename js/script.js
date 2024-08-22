@@ -120,6 +120,8 @@ function successMessage() {
             successAlert.style.display = "none"
             checkBox.checked = false;
             myMessage.value = ""
+            borderSupport.style.background  = "white"
+            borderGeneral.style.background  = "white"
             generalEnquiry.checked = false
             supportRequest.checked = false
             email.value = ""

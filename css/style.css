@@ -175,10 +175,11 @@ h3 {
         font-size: 11px;
     }
   #container #form {
-    width: 90%;
+    width: 95%;
     height: 800px;
     overflow: auto;
     transform: scale(1);
+    overflow-x:hidden;
   }
   #form #input-container {
     width: 100%;
