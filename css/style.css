@@ -179,6 +179,7 @@ h3 {
     height: 800px;
     overflow: auto;
     transform: scale(1);
+    overflow-x:hidden;
   }
   #form #input-container {
     width: 100%;
