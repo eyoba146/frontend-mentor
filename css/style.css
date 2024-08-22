@@ -137,14 +137,13 @@ h3 {
 #my-message {
     border-radius: 7px;
 }
-#container #success-message {
+#success-message {
     position: absolute;
     overflow: hidden;
     width: 100%;
     height: 100%;
     z-index: 1000;
     display: none;
-    margin-top: 230px;
     flex-direction: column;
     align-items: center;
     animation: pop-up .6s ease;
@@ -157,7 +156,7 @@ h3 {
   }
 @keyframes pop-up {
     from{margin-top: -300px;}
-    to{margin-top: 230px;}
+    to{margin-top: 0;}
 }
 #success-message #message {
     display: flex;
@@ -189,10 +188,10 @@ h3 {
         padding-bottom: 100px !important;
     }
 }
+
 @media (max-width:610px) {
     * {
         font-size: 11px;
-    }
   #container #form {
     width: 95%;
     height: 800px;
@@ -240,6 +239,7 @@ h3 {
   #last-radio #checkbox {
     transform: scale(1.1) !important;
   }
+  
   #last-radio h3 {
     margin-top: 25px;
   }
@@ -259,7 +259,9 @@ h3 {
   .last-radio {
     margin-top: -40px;
   }
-} 
+}
+
+
 @media (max-width: 414px) {
     #container {
         padding-top: 100px !important;
@@ -270,7 +272,7 @@ h3 {
         margin-bottom: 140px !important;
     }
     #success-message {
-        margin-bottom: 700px;
+        margin-bottom: 700px !important;
     }
 }
 @media (max-width: 375px) {
@@ -280,4 +282,5 @@ h3 {
     #container #form {
         margin-bottom: 710px  !important;
     }
+
 }
