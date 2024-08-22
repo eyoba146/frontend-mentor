@@ -113,9 +113,9 @@ function successMessage() {
         }
     }
     if(noError) {
+        window.scrollTo(0, 0)
         document.getElementById("container").style.transform = "scale(1)"
         successAlert.style.display = "flex"
- 
         setTimeout(() => {
             successAlert.style.display = "none"
             checkBox.checked = false;
