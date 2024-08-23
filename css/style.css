@@ -138,6 +138,7 @@ h3 {
     height: 40px;
 }
 #my-message {
+    resize: none;
     border-radius: 7px;
 }
 #success-message {
