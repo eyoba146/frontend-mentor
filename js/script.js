@@ -104,6 +104,7 @@ function checkCheckbox() {
     errors[5] = 1
 }
 
+
 function successMessage() {
     let noError = true;
     checkFirstName(); checkLastName();
@@ -113,12 +114,13 @@ function successMessage() {
     errors.forEach((thisError)=> {
         if(thisError == 1) {
             noError = false;
+            return
         }
     })
     if(!noError) {
         return
     }
-    
+
     form.scrollTo(0, 0)
     window.scrollTo(0, 0)
     successAlert.style.display = "flex"
