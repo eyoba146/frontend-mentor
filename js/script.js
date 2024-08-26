@@ -109,33 +109,36 @@ function successMessage() {
     checkFirstName(); checkLastName();
     checkEmail(); checkEnquiry();
     checkCheckbox();checkMessage();
-    for(let i = 0; i < errors.length; i++) {
-        if(errors[i] == 1) {
-            noError = false
-        }
-    }
-    if(noError) {
-        form.scrollTo(0, 0)
-        window.scrollTo(0, 0)
-        successAlert.style.display = "flex"
-        setTimeout(() => {
-            successAlert.style.marginTop = "-300px"
-            checkBox.checked = false;
-            myMessage.value = ""
-            borderSupport.classList.remove("lightgreenBg")
-            borderGeneral.classList.remove("lightgreenBg")
-            generalEnquiry.checked = false
-            supportRequest.checked = false
-            email.value = ""
-            lastName.value = ""
-            firstName.value = ""
-            setTimeout(() => {
-                successAlert.style.display = "none"
-                successAlert.style.marginTop = "0px"
 
-            }, 1500);
-        }, 4000);
+    errors.forEach((thisError)=> {
+        if(thisError == 1) {
+            noError = false;
+        }
+    })
+    if(!noError) {
+        return
     }
+    form.scrollTo(0, 0)
+    window.scrollTo(0, 0)
+    successAlert.style.display = "flex"
+    setTimeout(() => {
+        successAlert.style.marginTop = "-300px"
+        checkBox.checked = false;
+        myMessage.value = ""
+        borderSupport.classList.remove("lightgreenBg")
+        borderGeneral.classList.remove("lightgreenBg")
+        generalEnquiry.checked = false
+        supportRequest.checked = false
+        email.value = ""
+        lastName.value = ""
+        firstName.value = ""
+        setTimeout(() => {
+            successAlert.style.display = "none"
+            successAlert.style.marginTop = "0px"
+
+        }, 1500);
+    }, 4000);
+
 }
 
 
