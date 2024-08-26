@@ -118,6 +118,7 @@ function successMessage() {
     if(!noError) {
         return
     }
+
     form.scrollTo(0, 0)
     window.scrollTo(0, 0)
     successAlert.style.display = "flex"
