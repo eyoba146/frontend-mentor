@@ -18,98 +18,90 @@ const borderColor = "1px solid hsl(0, 66%, 54%)"
 const normalBorder = "1px solid hsl(186, 15%, 59%)"
 const form = document.getElementById("form")
 const successAlert = document.getElementById("success-message")
+const typeErrors = ['&nbsp;','This field is required','Please enter a valid email adress','Please enter a query type','To submit this form, please consent to being contacted']
 var errors = [0,0,0,0,0,0]
 function checkFirstName() {
-    if(firstName.value == "") {
-        firstName.style.border = borderColor
-        fNameIsRequired.innerHTML = "This field is required"
-        firstName.focus()
-        errors[0] = 1
-    }else {
+    if(firstName.value != "") {
         errors[0] = 0;
-        firstName.style.border = normalBorder
-        fNameIsRequired.innerHTML = "&nbsp;"
+        firstName.classList.remove("error")
+        fNameIsRequired.innerHTML = typeErrors[0]
+        return
     }
+    firstName.classList.add("error")
+    fNameIsRequired.innerHTML = typeErrors[1]
+    firstName.focus()
+    errors[0] = 1
 }
 
 function checkLastName() {
-    if(lastName.value == "") {
-        lastName.style.border = borderColor
-        lNameIsRequired.innerHTML = "This field is required"
-        lastName.focus()
-        errors[1] = 1
-    }else {
+    if(lastName.value != "") {
         errors[1] = 0
-        lastName.style.border = normalBorder
-        lNameIsRequired.innerHTML = "&nbsp;"
+        lastName.classList.remove("error")
+        lNameIsRequired.innerHTML = typeErrors[0]
+        return
     }
+    lastName.classList.add("error")
+    lNameIsRequired.innerHTML = typeErrors[1]
+    lastName.focus()
+    errors[1] = 1
 }
 
 function checkEmail() {
     let isValid = 0;
-    for(let i = 0; i < email.value.length; i++) {
-        console.log()
-        if(email.value[i] == "@") {
+    let emailChars = email.value.split("")
+    emailChars.forEach((email)=> {
+        if(email == "@" || email == ".") {
             isValid++;
-        }else if(email.value[i] == ".") {
-            isValid++
         }
-    }
-    if(email.value == "") {
-        email.style.border = borderColor
-        emailIsRequired.innerHTML = "Please enter a valid email adress"
-        email.focus()
-        errors[2] = 1
-    }else if(isValid != 2) {
-        errors[2] = 1
-        email.style.border = borderColor
-        email.focus()
-        emailIsRequired.innerHTML = "Please enter a valid email adress"
-    }else if(isValid == 2) {
+    })
+    if(email.value != "" && isValid == 2) {
         errors[2] = 0
-        email.style.border = normalBorder
-        emailIsRequired.innerHTML = "&nbsp;"
+        email.classList.remove("error")
+        emailIsRequired.innerHTML = typeErrors[0]
+        return
     }
+    email.classList.add("error")
+    emailIsRequired.innerHTML = typeErrors[2]
+    email.focus()
+    errors[2] = 1
 }
-
 function checkEnquiry() {
-    if(!(generalEnquiry.checked || supportRequest.checked)) {
-        queryTypeIsRequired.innerHTML = "Please enter a query type"
-        generalEnquiry.focus()
-        borderGeneral.style.border = borderColor
-        borderSupport.style.border = borderColor
-        errors[3] = 1
-    }else {
+   if(generalEnquiry.checked || supportRequest.checked) {
         errors[3] = 0
-        queryTypeIsRequired.innerHTML = "&nbsp"
-        borderGeneral.style.border = normalBorder
-        borderSupport.style.border = normalBorder
+        queryTypeIsRequired.innerHTML = typeErrors[0]
+        borderGeneral.classList.remove("error")
+        borderSupport.classList.remove("error")
+        return;
     }
+    queryTypeIsRequired.innerHTML = typeErrors[3]
+    generalEnquiry.focus()
+    borderGeneral.classList.add("error")
+    borderSupport.classList.add("error")
+    errors[3] = 1
 }
 
 function checkMessage() {
-    if(myMessage.value == "") {
-        myMessage.style.border = borderColor
-        messageIsRequired.innerHTML = "This field is required"
-        myMessage.focus()
-        errors[4] = 1
-    }else {
+if(myMessage.value != "") {
         errors[4] = 0
-        myMessage.style.border = normalBorder
-        messageIsRequired.innerHTML = "&nbsp;"
+        myMessage.classList.remove("error")
+        messageIsRequired.innerHTML = typeErrors[0]
+        return;
     }
+    myMessage.classList.add("error")
+    messageIsRequired.innerHTML = typeErrors[1]
+    myMessage.focus()
+    errors[4] = 1
 }
 
 function checkCheckbox() {
-    if(!checkBox.checked) {
-        chekBoxIsRequired.innerHTML = "To submit this form, please consent to being contacted"
-        checkBox.focus()
-        errors[5] = 1
-    }else {
+    if(checkBox.checked) {
         errors[5] = 0
-        chekBoxIsRequired.innerHTML = "&nbsp;"
-
+        chekBoxIsRequired.innerHTML = typeErrors[0]
+        return
     }
+    chekBoxIsRequired.innerHTML = typeErrors[4]
+    checkBox.focus()
+    errors[5] = 1
 }
 
 function successMessage() {
@@ -130,8 +122,8 @@ function successMessage() {
             successAlert.style.marginTop = "-300px"
             checkBox.checked = false;
             myMessage.value = ""
-            borderSupport.style.background  = "white"
-            borderGeneral.style.background  = "white"
+            borderSupport.classList.remove("lightgreenBg")
+            borderGeneral.classList.remove("lightgreenBg")
             generalEnquiry.checked = false
             supportRequest.checked = false
             email.value = ""
@@ -139,25 +131,24 @@ function successMessage() {
             firstName.value = ""
             setTimeout(() => {
                 successAlert.style.display = "none"
-            successAlert.style.marginTop = "0px"
+                successAlert.style.marginTop = "0px"
 
             }, 1500);
         }, 4000);
-     
-    }else {
     }
 }
 
+
 submitBtn.addEventListener("click",successMessage)
 generalEnquiry.addEventListener("click",()=>{
-    borderGeneral.style.background = "hsl(148, 38%, 91%)"
-    borderSupport.style.background = "hsl(0, 0%, 100%)"
-    borderGeneral.style.border = "1px solid hsl(169, 82%, 27%)"
-    borderSupport.style.border = normalBorder;
+    borderGeneral.classList.add("lightGreenBg")
+    borderGeneral.classList.add("active")
+    borderSupport.classList.remove("active")
+    borderSupport.classList.remove("lightGreenBg")
 })
 supportRequest.addEventListener("click",()=> {
-    borderSupport.style.background = "hsl(148, 38%, 91%)"
-    borderGeneral.style.background = "hsl(0, 0%, 100%)"
-    borderSupport.style.border = "1px solid hsl(169, 82%, 27%)"
-    borderGeneral.style.border = normalBorder;
-})
+    borderSupport.classList.add("lightGreenBg")
+    borderSupport.classList.add("active")
+    borderGeneral.classList.remove("active")
+    borderGeneral.classList.remove("lightGreenBg")
+}) 

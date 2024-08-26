@@ -141,6 +141,15 @@ h3 {
     resize: none;
     border-radius: 7px;
 }
+.active {
+    border: 1px solid hsl(169, 82%, 27%) !important;
+}
+.lightGreenBg {
+    background: hsl(148, 38%, 91%) !important;
+}
+.error {
+    border: 1px solid hsl(0, 66%, 54%) !important;
+}
 #success-message {
     position: absolute;
     overflow: hidden;
