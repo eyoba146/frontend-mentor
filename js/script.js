@@ -64,7 +64,6 @@ if(myMessage.value != "") {
         return;
     }
     statusChanger(myMessage,messageIsRequired,1,1,4)
-
 }
 
 function checkCheckbox() {
@@ -73,7 +72,6 @@ function checkCheckbox() {
         return
     }
     statusChanger(checkBox,chekBoxIsRequired,1,4,5)
-
 }
 function statusChanger(element,errorMessageElement,status,typeError,errorIndex) {
     if(status == 1) {
@@ -128,13 +126,11 @@ function successMessage() {
 
         }, 1500);
     }, 4000);
-
 }
 
 function radioToggler(selectedRadio,otherRadio) {
     selectedRadio.classList.add("lightGreenBg","active")
     otherRadio.classList.remove("active","lightGreenBg")
-
 }
 submitBtn.addEventListener("click",successMessage)
 generalEnquiry.addEventListener("click",()=>{
@@ -142,5 +138,4 @@ generalEnquiry.addEventListener("click",()=>{
 })
 supportRequest.addEventListener("click",()=> {
     radioToggler(borderSupport,borderGeneral)
-
 }) 
