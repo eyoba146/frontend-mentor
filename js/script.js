@@ -17,33 +17,23 @@ const submitBtn =document.getElementById("submit")
 const form = document.getElementById("form")
 const successAlert = document.getElementById("success-message")
 const typeErrors = ['&nbsp;','This field is required','Please enter a valid email adress','Please enter a query type','To submit this form, please consent to being contacted']
-var errors = [0,0,0,0,0,0]
+let errors = [0,0,0,0,0,0]
+
 function checkFirstName() {
-    if(firstName.value != "") {
-        errors[0] = 0;
-        firstName.classList.remove("error")
-        fNameIsRequired.innerHTML = typeErrors[0]
+    if(firstName.value == "") {
+        statusChanger(firstName,fNameIsRequired,1,1,0)
         return
     }
-    firstName.classList.add("error")
-    fNameIsRequired.innerHTML = typeErrors[1]
-    firstName.focus()
-    errors[0] = 1
+    statusChanger(firstName,fNameIsRequired,0,0,0)
 }
 
 function checkLastName() {
-    if(lastName.value != "") {
-        errors[1] = 0
-        lastName.classList.remove("error")
-        lNameIsRequired.innerHTML = typeErrors[0]
+    if(lastName.value == "") {
+        statusChanger(lastName,lNameIsRequired,1,1,1)
         return
     }
-    lastName.classList.add("error")
-    lNameIsRequired.innerHTML = typeErrors[1]
-    lastName.focus()
-    errors[1] = 1
+    statusChanger(lastName,lNameIsRequired,0,0,1)
 }
-
 function checkEmail() {
     let isValid = 0;
     let emailChars = email.value.split("")
@@ -53,69 +43,64 @@ function checkEmail() {
         }
     })
     if(email.value != "" && isValid == 2) {
-        errors[2] = 0
-        email.classList.remove("error")
-        emailIsRequired.innerHTML = typeErrors[0]
+    statusChanger(email,emailIsRequired,0,0 ,2)
         return
     }
-    email.classList.add("error")
-    emailIsRequired.innerHTML = typeErrors[2]
-    email.focus()
-    errors[2] = 1
+    statusChanger(email,emailIsRequired,1,2,2)
 }
 function checkEnquiry() {
    if(generalEnquiry.checked || supportRequest.checked) {
-        errors[3] = 0
-        queryTypeIsRequired.innerHTML = typeErrors[0]
-        borderGeneral.classList.remove("error")
-        borderSupport.classList.remove("error")
+        statusChanger(borderGeneral,queryTypeIsRequired,0,0,3)
+        statusChanger(borderSupport,queryTypeIsRequired,0,0,3)
         return;
     }
-    queryTypeIsRequired.innerHTML = typeErrors[3]
-    generalEnquiry.focus()
-    borderGeneral.classList.add("error")
-    borderSupport.classList.add("error")
-    errors[3] = 1
+    statusChanger(borderGeneral,queryTypeIsRequired,1,3,3)
+    statusChanger(borderSupport,queryTypeIsRequired,1,3,3   )
 }
 
 function checkMessage() {
 if(myMessage.value != "") {
-        errors[4] = 0
-        myMessage.classList.remove("error")
-        messageIsRequired.innerHTML = typeErrors[0]
+        statusChanger(myMessage,messageIsRequired,0,0,4)
         return;
     }
-    myMessage.classList.add("error")
-    messageIsRequired.innerHTML = typeErrors[1]
-    myMessage.focus()
-    errors[4] = 1
+    statusChanger(myMessage,messageIsRequired,1,1,4)
+
 }
 
 function checkCheckbox() {
     if(checkBox.checked) {
-        errors[5] = 0
-        chekBoxIsRequired.innerHTML = typeErrors[0]
+        statusChanger(checkBox,chekBoxIsRequired,0,4,5)
         return
     }
-    chekBoxIsRequired.innerHTML = typeErrors[4]
-    checkBox.focus()
-    errors[5] = 1
+    statusChanger(checkBox,chekBoxIsRequired,1,4,5)
+
+}
+function statusChanger(element,errorMessageElement,status,typeError,errorIndex) {
+    if(status == 1) {
+        element.classList.add('error')
+        element.focus()
+        errors[errorIndex] = 1
+        errorMessageElement.innerHTML = typeErrors[typeError]
+        return
+    }
+    errors[errorIndex] = 0
+    element.classList.remove('error')
+    errorMessageElement.innerHTML = typeErrors[0]
 }
 
-
 function successMessage() {
-    let noError = true;
+    let anyError = false;
     checkFirstName(); checkLastName();
     checkEmail(); checkEnquiry();
     checkCheckbox();checkMessage();
-
+    console.log(errors)
     errors.forEach((thisError)=> {
         if(thisError == 1) {
-            noError = false;
+            anyError = true;
             return
         }
     })
-    if(!noError) {
+    if(anyError) {
         return
     }
 
