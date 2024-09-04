@@ -88,6 +88,18 @@ function statusChanger(element,errorMessageElement,status,typeError,errorIndex) 
     errorMessageElement.innerHTML = typeErrors[0]
 }
 
+function resetFormFields() {
+    checkBox.checked = false;
+    myMessage.value = ""
+    borderSupport.classList.remove("lightgreenBg")
+    borderGeneral.classList.remove("lightgreenBg")
+    generalEnquiry.checked = false
+    supportRequest.checked = false
+    email.value = ""
+    lastName.value = ""
+    firstName.value = ""
+}
+
 function successMessage() {
     let anyError = false;
     checkFirstName(); checkLastName();
@@ -109,15 +121,7 @@ function successMessage() {
     successAlert.style.display = "flex"
     setTimeout(() => {
         successAlert.style.marginTop = "-300px"
-        checkBox.checked = false;
-        myMessage.value = ""
-        borderSupport.classList.remove("lightgreenBg")
-        borderGeneral.classList.remove("lightgreenBg")
-        generalEnquiry.checked = false
-        supportRequest.checked = false
-        email.value = ""
-        lastName.value = ""
-        firstName.value = ""
+        resetFormFields()
         setTimeout(() => {
             successAlert.style.display = "none"
             successAlert.style.marginTop = "0px"
@@ -127,17 +131,16 @@ function successMessage() {
 
 }
 
+function radioToggler(selectedRadio,otherRadio) {
+    selectedRadio.classList.add("lightGreenBg","active")
+    otherRadio.classList.remove("active","lightGreenBg")
 
+}
 submitBtn.addEventListener("click",successMessage)
 generalEnquiry.addEventListener("click",()=>{
-    borderGeneral.classList.add("lightGreenBg")
-    borderGeneral.classList.add("active")
-    borderSupport.classList.remove("active")
-    borderSupport.classList.remove("lightGreenBg")
+    radioToggler(borderGeneral,borderSupport)
 })
 supportRequest.addEventListener("click",()=> {
-    borderSupport.classList.add("lightGreenBg")
-    borderSupport.classList.add("active")
-    borderGeneral.classList.remove("active")
-    borderGeneral.classList.remove("lightGreenBg")
+    radioToggler(borderSupport,borderGeneral)
+
 }) 
